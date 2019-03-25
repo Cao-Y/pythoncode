@@ -17,7 +17,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -84,5 +84,22 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>225</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -1,9 +1,19 @@
 import sys
 from PyQt5 import QtWidgets,QtCore
+from learnUI import *
 
-app = QtWidgets.QApplication(sys.argv)
-widget = QtWidgets.QWidget()
-widget.resize(400,400)
-widget.setWindowTitle('hello world')
-widget.show()
-sys.exit(app.exec_())
+
+
+class my_Windows(QtWidgets.QMainWindow,Ui_MainWindow):
+    def __init__(self):
+        super(my_Windows,self).__init__()
+        self.setupUi(self)
+        self.show()
+
+
+
+
+if __name__ =="__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    mywindow = my_Windows()
+    sys.exit(app.exec_())
