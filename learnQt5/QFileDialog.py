@@ -33,10 +33,12 @@ class Example(QMainWindow):
 
     def showDialog(self):
 
-        fname = QFileDialog.getOpenFileName(self, 'Open file', '/home')
+        fname,ftype = QFileDialog.getOpenFileName(self, 'Open file', '/home')
+        # print(fname)
+        # print(ftype)
 
-        if fname[0]:
-            f = open(fname[0], 'r')
+        if fname:
+            f = open(fname, 'r')
 
             with f:
                 data = f.read()
