@@ -12,7 +12,9 @@ class my_Window(QMainWindow,Ui_MainWindow): #继承Qt Designer设计的ui
         super(my_Window, self).__init__()
         self.setupUi(self)
         self.cap = cv2.VideoCapture(0) #获取0号摄像头
-        self.cap2 = cv2.VideoCapture(2)  #获取2号摄像头
+        self.textBrowser.append('摄像头1\n')
+        self.cap2 = cv2.VideoCapture(1)  #获取2号摄像头
+        self.textBrowser.append('摄像头2')
         self.timer = QtCore.QTimer()
         self.timer.start()
         self.timer.setInterval(100)
