@@ -7,7 +7,7 @@ import os
 import numpy
 
 class webCamera:
-    def __init__(self, resolution = (640, 480), host = ("", 7999)):
+    def __init__(self, resolution = (640, 480), host = ("", 8000)):
         self.resolution = resolution
         self.host = host
         self.setSocket(self.host)
@@ -70,8 +70,6 @@ class webCamera:
             clientThread = threading.Thread(target = self._processConnection,
                 args = (client, addr, )) #有客户端连接时产生新的线程进行处理
             clientThread.start()
-    def main():
-        cam = webCamera()
-        cam.run()
 if __name__ == "__main__":
-    main()
+    cam =webCamera()
+    cam.run()
