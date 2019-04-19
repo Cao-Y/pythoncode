@@ -22,35 +22,20 @@ while joystick.get_init():
             while 1:
                 for event in pygame.event.get():
                     print(event)
-                    if event.type == JOYBUTTONDOWN:
+                    if event.type == JOYBUTTONDOWN: #获取按键
                         print(event.__dict__)
                         print(event.joy)
                         print(event.button)
-                    if event.type == JOYAXISMOTION:
+                    if event.type == JOYAXISMOTION: #获取摇杆
                         print(event.__dict__)
                         print(event.joy)
                         print(event.axis)
                         print(event.value)
-                    if event.type == JOYHATMOTION :
+                    if event.type == JOYHATMOTION :#获取hat
                         print(event.__dict__)
                         print(event.joy)
                         print(event.hat)
                         print(event.value)
-
-            # numaxes = joy.get_numaxes()
-            # print(numaxes)
-            # buttons = joy.get_numbuttons()
-            # print(buttons)
-            # # hats = joy.get_numhats()
-            # # print(hats)
-            # for i in range(numaxes):
-            #     axe = joy.get_axis(i)
-            #     print(axe)
-            # for i in range(buttons):
-            #     button = joy.get_button(i)
-            #     print(button)
-
-
         else :
             print("手柄连接失败")
     for i in range(joy_count):
