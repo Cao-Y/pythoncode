@@ -7,8 +7,7 @@ pygame.init()
 joystick.init()
 joy_count = joystick.get_count()
 
-while joystick.get_init():
-# if joystick.get_init() == True:
+if joystick.get_init() == True:
     print("手柄模块初始化")
     joysticks = [joystick.Joystick(i) for i in range(joy_count)]
     print(joysticks)
