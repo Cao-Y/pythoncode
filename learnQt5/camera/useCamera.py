@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import QApplication,QMainWindow
 from PyQt5 import QtGui,QtCore
 from cameratest2 import *
 import cv2
+# global cap
+# global cap2
 
 
 
@@ -11,15 +13,15 @@ class my_Window(QMainWindow,Ui_MainWindow): #继承Qt Designer设计的ui
     def __init__(self):
         super(my_Window, self).__init__()
         self.setupUi(self)
-        self.cap = cv2.VideoCapture(0) #获取0号摄像头
-        self.textBrowser.append('摄像头1\n')
-        self.cap2 = cv2.VideoCapture(1)  #获取2号摄像头
-        self.textBrowser.append('摄像头2')
         self.timer = QtCore.QTimer()
         self.timer.start()
         self.timer.setInterval(100)
-        self.timer.timeout.connect(self.start)  #0号摄像头开始使用
-        self.timer.timeout.connect(self.start2)   #2号摄像头开始使用
+        self.cap = cv2.VideoCapture(0)  # 获取0号摄像头
+        self.textBrowser.append('摄像头1创建成功\n')
+        self.timer.timeout.connect(self.start)  # 0号摄像头开始使用
+        self.cap2 = cv2.VideoCapture(1)  # 获取2号摄像头
+        self.textBrowser.append('摄像头2创建成功')
+        self.timer.timeout.connect(self.start2)  # 2号摄像头开始使用
         self.comboBox.currentIndexChanged.connect(self.selectChange)  #下拉菜单切换摄像头
         self.comboBox_2.currentIndexChanged.connect(self.selectChange2)
         self.show()
@@ -39,26 +41,36 @@ class my_Window(QMainWindow,Ui_MainWindow): #继承Qt Designer设计的ui
 
 
     def start(self): #开启摄像头
+        try:
+            flag, image = self.cap.read()
+            # show = cv2.resize(image, (640, 480))
+            show = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            # print(show.shape[1], show.shape[0])
+            # show.shape[1] = 640, show.shape[0] = 480
+            showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], QtGui.QImage.Format_RGB888)
+            self.label.setPixmap(QtGui.QPixmap.fromImage(showImage))  # 摄像头信息传给label
+        except:
+            self.textBrowser.append('摄像头1连接失败\n')
+            self.cap.release
 
-        flag, image = self.cap.read()
 
-        #show = cv2.resize(image, (640, 480))
-        show = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        # print(show.shape[1], show.shape[0])
-        # show.shape[1] = 640, show.shape[0] = 480
-        showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], QtGui.QImage.Format_RGB888)
-        self.label.setPixmap(QtGui.QPixmap.fromImage(showImage))  #摄像头信息传给label
+
 
     def start2(self):#开启另外摄像头
+        try:
+            flag, image = self.cap2.read()
 
-        flag, image = self.cap2.read()
+            # show = cv2.resize(image, (640, 480))
+            show = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            # print(show.shape[1], show.shape[0])
+            # show.shape[1] = 640, show.shape[0] = 480
+            showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], QtGui.QImage.Format_RGB888)
+            self.label_2.setPixmap(QtGui.QPixmap.fromImage(showImage))  # 摄像头信息传给label
+        except:
+            self.textBrowser.append('摄像头2连接失败\n')
+            self.cap2.release
 
-        #show = cv2.resize(image, (640, 480))
-        show = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        # print(show.shape[1], show.shape[0])
-        # show.shape[1] = 640, show.shape[0] = 480
-        showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], QtGui.QImage.Format_RGB888)
-        self.label_2.setPixmap(QtGui.QPixmap.fromImage(showImage))  #摄像头信息传给label
+
 
 
 if __name__ =='__main__':
