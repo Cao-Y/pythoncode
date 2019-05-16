@@ -193,7 +193,8 @@ def lets_start():
             continue
 
 
-
+if __name__ == "__main__":
+    lets_start()
 
 
 

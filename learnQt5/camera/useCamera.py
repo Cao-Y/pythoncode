@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication,QMainWindow
 from PyQt5 import QtGui,QtCore
 from cameratest2 import *
 import cv2
+import socket
 # global cap
 # global cap2
 
@@ -69,6 +70,9 @@ class my_Window(QMainWindow,Ui_MainWindow): #继承Qt Designer设计的ui
         except:
             self.textBrowser.append('摄像头2连接失败\n')
             self.cap2.release
+
+    def sendMessage(self):
+
 
 
 

@@ -26,6 +26,7 @@ if joystick.get_init() == True:
                         print(event.joy)
                         print(event.button)
                     if event.type == JOYAXISMOTION: #获取摇杆
+                        print(joy.get_axis(0))
                         print(event.__dict__)
                         print(event.joy)
                         print(event.axis)
