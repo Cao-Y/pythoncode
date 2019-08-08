@@ -17,10 +17,10 @@ class my_Window(QMainWindow,Ui_MainWindow): #继承Qt Designer设计的ui
         self.timer = QtCore.QTimer()
         self.timer.start()
         self.timer.setInterval(100)
-        self.cap = cv2.VideoCapture(0)  # 获取0号摄像头
+        self.cap = cv2.VideoCapture(1)  # 获取0号摄像头
         self.textBrowser.append('摄像头1创建成功\n')
         self.timer.timeout.connect(self.start)  # 0号摄像头开始使用
-        self.cap2 = cv2.VideoCapture(1)  # 获取2号摄像头
+        self.cap2 = cv2.VideoCapture(2)  # 获取2号摄像头
         self.textBrowser.append('摄像头2创建成功')
         self.timer.timeout.connect(self.start2)  # 2号摄像头开始使用
         self.comboBox.currentIndexChanged.connect(self.selectChange)  #下拉菜单切换摄像头
@@ -71,13 +71,12 @@ class my_Window(QMainWindow,Ui_MainWindow): #继承Qt Designer设计的ui
             self.textBrowser.append('摄像头2连接失败\n')
             self.cap2.release
 
-    def sendMessage(self):
+    # def sendMessage(self):
 
 
 
 
-
-if __name__ =='__main__':
-    app =QApplication(sys.argv)
-    myWin =my_Window()
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    myWin = my_Window()
     sys.exit(app.exec_())

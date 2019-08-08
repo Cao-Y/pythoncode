@@ -32,7 +32,7 @@ def sendOrder(order):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     # while flag:
     #     s.sendto(order.encode('utf-8'), ('192.168.31.20', 8080))
-    s.sendto(order.encode('utf-8'), ('169.254.159.175', 8080))
+    s.sendto(order.encode('utf-8'), ('192.168.2.10', 8080))
     # while True:
     #     s.sendto(order.encode('utf-8'), ('192.168.31.20', 8000))
         #echo_back, address = s.recvfrom(1024)
@@ -46,9 +46,20 @@ if __name__ =="__main__":
     time.sleep(1.0)
     while True:
         message = recevemessage(ser).decode()
-
         #print(message)
-        if 'DOWN' in message:
+        if 'L1' in message :
+            #sendOrder("a:x0500,y0500,z0500,0,0,0,0,0.")
+            #print(message[4:19])
+            num = message[4:19].split(",")
+            if len(num)!=4:
+                continue
+
+            print(num[0])
+            print(num[1])
+            print(num[2])
+            print(num[3])
+        elif 'DOWN' in message:
+            # print(message)
             sendOrder("a:x0200,y0500,z0500,0,0,0,0,0.")
         elif 'Up' in message :
             sendOrder("a:x0800,y0500,z0500,0,0,0,0,0.")
